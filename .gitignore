@@ -1,3 +1,4 @@
+
 node_modules
 public
 .tmp
@@ -8,3 +9,14 @@ heroku
 dist
 .idea/
 .DS_Store
+=======
+# Logs
+logs
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+
+
