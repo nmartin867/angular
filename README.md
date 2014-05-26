@@ -7,7 +7,7 @@ Introduction to AngularJS
 
 ```
 $mkdir demos && cd $_
-$git clone
+$git clone https://github.com/nmartin867/angular.git
 ```
 
 *Install node dependencies using npm
