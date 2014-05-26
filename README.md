@@ -13,18 +13,18 @@ $git clone https://github.com/nmartin867/angular.git
 *Install node dependencies using npm
 
 ```
-npm install
+$npm install
 ```
 
 *Install client dependencies
 
 ```
-bower install
+$bower install
 ```
 
 ## Run It
 
 ```
-grunt serve
+$grunt serve
 ```
 
