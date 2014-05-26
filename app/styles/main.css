@@ -1,0 +1,18 @@
+body {
+    padding-top: 60px;
+    font-size: 24px;
+}
+
+.content {
+    font-size: 24px;
+}
+
+pre{
+    font-size: 15px;
+}
+
+.hippie{
+    width: 30px;
+    height: 32px;
+    background-image: url('/images/sticky-icky.png');
+}

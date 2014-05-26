@@ -1,0 +1,39 @@
+<div class="directives">
+    <div class="page-header">
+        <h1>Directives</h1>
+    </div>
+
+    <div hljs>
+        angular.module('myApp').directive('peopleList', function(){
+            return {
+                restrict: 'E',
+                replace: true,
+                templateUrl: '../scripts/directives/templates/people-list.html',
+                scope: {
+                    people: '='
+                    },
+                link: function (scope, element) {
+                    element.on('mousedown', function(){
+                    console.log('Ouch!');
+            });
+
+           }
+            }
+
+        });
+    </div>
+
+    <div class="page-header">
+        <h1>Markup</h1>
+    </div>
+
+    <div hljs>
+        <div class="people-container" ng-controller="PeopleCtrl">
+            <people-list people="people"></people-list>
+        </div>
+    </div>
+
+    <div class="people-container" ng-controller="PeopleCtrl">
+        <people-list people="people"></people-list>
+    </div>
+</div>

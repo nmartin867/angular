@@ -1,0 +1,113 @@
+<div class="controllers">
+    <div class="page-header">
+        <h1>Controllers</h1>
+    </div>
+    <div class="row">
+        <ul>
+            <li>
+                Controllers are attached to a module.
+            </li>
+            <li>
+                Angular instantiates controllers using the controller's <strong>constructor function</strong>.
+            </li>
+            <li>
+                A new <strong>child scope</strong> is created for each controller.
+            </li>
+        </ul>
+    </div>
+
+    <div class="row">
+
+            <h3>Add "people" module as a dependency to app module</h3>
+
+            <div class="row">
+                <div hljs>
+                    angular.module('myApp', ['ngRoute', 'hljs', 'people']);
+                </div>
+            </div>
+
+            <h3>PeopleCtrl</h3>
+
+            <div class="row">
+                <div hljs>
+
+                    var people = angular.module('people', []);
+
+                    people.controller('PeopleCtrl', function ($scope) {
+
+                    $scope.people = [
+                    {
+                    'name': 'Matt',
+                    'detail': 'Trains to kick people in the dome piece.'
+                    },
+                    {
+                    'name': 'Ben',
+                    'detail': 'Can speak some English but is fluent in Bengenese.'
+                    },
+                    {
+                    'name': 'Greg',
+                    'detail': 'Rarely has opinions on trivial topics such as bracket placement.'
+                    }
+                    ];
+                    });
+
+                </div>
+            </div>
+            <h3>Markup</h3>
+
+            <div class="row">
+                <div hljs>
+                    <div ng-controller="PeopleCtrl">
+                        <p>
+                            There are {{people.length}} people in the controller.
+                        </p>
+
+                        <div class="row">
+                            <table class="table-striped">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Detail</th>
+                                </tr>
+                                <tbody>
+                                <tr ng-repeat="person in people">
+                                    <td>{{person.name}}</td>
+                                    <td>{{person.detail}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+            <div class="row">
+                <div ng-controller="PeopleCtrl">
+                    <p>
+                        There are {{people.length}} people in the controller.
+                    </p>
+                    <table class="table-hover table">
+                        <tr>
+                            <th>Name</th>
+                            <th>Detail</th>
+                        </tr>
+                        <tbody>
+                        <tr ng-repeat="person in people">
+                            <td>{{person.name}}</td>
+                            <td>{{person.detail}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <a href="/controllers/more" class="btn btn-primary">Show me more... Yo!</a>
+            </div>
+
+    </div>
+
+
+</div>
+

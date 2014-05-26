@@ -1,0 +1,131 @@
+<div class="services">
+    <div class="page-header">
+        <h1>Services</h1>
+    </div>
+    <div class="row">
+        <ul>
+            <li>
+                Services are also attached to a module.
+            </li>
+            <li>
+                Services are <strong>singletons*</strong> and will not be garbage collected.
+            </li>
+            <li>
+                Services can depend on other services.
+            </li>
+            <li>
+                Services are often used to share data between controllers
+            </li>
+        </ul>
+    </div>
+
+    <div class="page-header">
+        <h1>Registering a service</h1>
+    </div>
+
+    <div hljs>
+        angular.module('people').factory('Peopleservice', function Peopleservice($http, $q) {
+        // AngularJS will instantiate a singleton by calling "new" on this function
+        function getPeople(){
+            var deferred = $q.defer();
+            var peopleUrl = '/api/people';
+            $http.get(peopleUrl).then(function(response){
+            deferred.resolve(response);
+        });
+            return deferred.promise;
+        }
+
+        return {
+            getPeople: getPeople
+        }
+        });
+    </div>
+
+    <div class="page-header">
+        <h1>Add our service as a dependency</h1>
+    </div>
+
+    <div hljs>
+        angular.module('people')
+        .controller('AjaxPeopleCtrl', ['$scope', 'Peopleservice', function ($scope, peopleService) {
+            $scope.getPeople = function(){
+                peopleService.getPeople().then(function(response){
+                $scope.people = response.data;
+            });
+           }
+        }]);
+    </div>
+
+    <div class="page-header">
+        <h1>Wire up 'getPeople()' in the markup</h1>
+    </div>
+
+    <div hljs>
+        <div ng-controller="AjaxPeopleCtrl">
+            <div class="row">
+                <p>
+                    <input class="btn btn-primary" value="Get People" ng-click="getPeople()">
+                </p>
+
+            </div>
+            <div class="row" ng-if="people">
+                <table class="table-hover table">
+                    <tr>
+                        <th></th>
+                        <!--<th></th>-->
+                        <th>Name</th>
+                        <th>Detail</th>
+                    </tr>
+                    <tbody>
+                    <!--<tr ng-repeat="person in people |filter:search">-->
+                    <tr ng-repeat="person in people">
+                        <!--<td>-->
+                        <!--<div ng-class="{'hippie' : person.isHippie}"></div>-->
+                        <!--</td>-->
+                        <td>
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </td>
+                        <td>{{person.name}}</td>
+                        <td>{{person.detail}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="row">
+        <div ng-controller="AjaxPeopleCtrl">
+            <div class="row">
+                <p>
+                    <input class="btn btn-primary" value="Get People" ng-click="getPeople()">
+                </p>
+
+            </div>
+            <div class="row" ng-if="people">
+                <table class="table-hover table">
+                    <tr>
+                        <th></th>
+                        <!--<th></th>-->
+                        <th>Name</th>
+                        <th>Detail</th>
+                    </tr>
+                    <tbody>
+                    <!--<tr ng-repeat="person in people |filter:search">-->
+                    <tr ng-repeat="person in people">
+                        <!--<td>-->
+                        <!--<div ng-class="{'hippie' : person.isHippie}"></div>-->
+                        <!--</td>-->
+                        <td>
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </td>
+                        <td>{{person.name}}</td>
+                        <td>{{person.detail}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

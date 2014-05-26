@@ -1,0 +1,133 @@
+<div class="controllers">
+    <div class="page-header">
+        <h1>More fun with Controllers... meng</h1>
+    </div>
+
+    <div class="row">
+        <div class="row">
+            <p>
+                Our insanely awesome controller:
+            </p>
+        </div>
+        <div hljs>
+            angular.module('people').controller('PeopleCtrl', function ($scope) {
+
+                $scope.people = [
+                {
+                    'name': 'Matt',
+                    'detail': 'Trains to kick people in the dome piece.',
+                    'isHippie': false
+                },
+                {
+                    'name': 'Ben',
+                    'detail': 'Can speak some English but is fluent in Bengenese',
+                    'isHippie': false},
+                {
+                    'name': 'Greg',
+                    'detail': 'Rarely has opinions on trivial topics such as bracket placement.',
+                    'isHippie': true
+                }
+                ];
+
+            $scope.removePerson = function (person) {
+                var people = angular.copy($scope.people, []);
+                angular.forEach($scope.people, function (value, index) {
+                    if (value.name === person.name) {
+                         people.splice(index, 1);
+                        $scope.people = people;
+                    }
+                });
+                };
+            });
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="row">
+            <p>
+                Markup:
+            </p>
+        </div>
+        <div hljs>
+            <div ng-controller="PeopleCtrl">
+                <div class="row">
+                    <p>
+                        Filter:
+                        <!--<input type="text" placeholder="filter the homies" ng-model="search.name">-->
+                        <input type="text" placeholder="filter the homies" ng-model="search">
+                    </p>
+                </div>
+
+                <div class="row">
+                    <p>
+                        <i>There are {{people.length}} people in the controller.</i>
+                    </p>
+                </div>
+
+                <div class="row">
+                    <table class="table-hover table">
+                        <tr>
+                            <th></th>
+                            <!--<th></th>-->
+                            <th>Name</th>
+                            <th>Detail</th>
+                        </tr>
+                        <tbody>
+                        <!--<tr ng-repeat="person in people |filter:search">-->
+                        <tr ng-repeat="person in people |filter:search">
+                            <!--<td>-->
+                            <!--<div ng-class="{'hippie' : person.isHippie}"></div>-->
+                            <!--</td>-->
+                            <td ng-click="removePerson(person)">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </td>
+                            <td>{{person.name}}</td>
+                            <td>{{person.detail}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-controller="PeopleCtrl">
+        <div class="row">
+            <p>
+                Filter:
+                <input type="text" placeholder="filter the homies" ng-model="search.name">
+                <!--<input type="text" placeholder="filter the homies" ng-model="search">-->
+            </p>
+        </div>
+
+        <div class="row">
+            <p>
+                <i>There are {{people.length}} people in the controller.</i>
+            </p>
+        </div>
+
+        <div class="row">
+            <table class="table-hover table">
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Detail</th>
+                </tr>
+                <tbody>
+                <!--<tr ng-repeat="person in people |filter:search">-->
+                <tr ng-repeat="person in people |filter:search">
+                    <td>
+                    <div ng-class="{'hippie' : person.isHippie}"></div>
+                    </td>
+                    <td ng-click="removePerson(person)">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </td>
+                    <td>{{person.name}}</td>
+                    <td>{{person.detail}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
